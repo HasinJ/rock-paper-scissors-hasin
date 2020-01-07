@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
+    <meta charset="utf-8">
     <title>Rock Paper Scissors Hasin</title>
   </head>
   <body>
     <script>
 
       const playerSelection = prompt("Rock paper or scissors?","").toLowerCase();
-      const computerSelection = computerPlay();
-      playRound(playerSelection,computerSelection);
+      playRound(playerSelection);
 
       function computerPlay(){
-        number = Math.floor(Math.random() * 3);
+        let number = Math.floor(Math.random() * 3);
         switch (number){
           case 0:
             return "rock";
@@ -20,10 +20,27 @@
             return "paper";
             break;
           case 2:
-            return 'scissors';
+            return "scissors";
             break;
         }
       }
+
+      function playRound(){
+        let pS = playerSelection;
+        let cS = computerPlay();
+
+        if ((pS == "rock" && cS == "paper") || (pS == "paper" && cS == "scissors") || (pS == "scissors" && cS == "rock")) {
+          return "You lost!";
+        }
+        else if (pS == cS) {
+          return "Tie!";
+        }
+        else {
+          return "You won!";
+        }
+      }
+
+      
 
 
 
