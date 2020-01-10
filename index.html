@@ -31,18 +31,18 @@
         }
       }
 
-      function playRound(){
+      function playRound(){ //converted strings to numbers in order to keep track of rounds
         let pS = playerSelection;
         let cS = computerPlay();
 
         if ((pS == "rock" && cS == "paper") || (pS == "paper" && cS == "scissors") || (pS == "scissors" && cS == "rock")) {
-          return 0;
+          return 0; //You lost!
         }
         else if (pS == cS) {
           return 0;
         }
         else {
-          return 1;
+          return 1; //You won!
         }
       }
 
