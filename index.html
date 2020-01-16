@@ -32,7 +32,7 @@
     const whatHappened = document.getElementById('whatHappened')
     const choices = document.querySelectorAll('.choice');
 
-    choices.forEach( (choice) => //gives a function to each button with class 'choice' simultaneously
+    choices.forEach( (choice) => //gives a function to each html button with class 'choice' simultaneously
       choice.addEventListener( 'click', (e) => {
         playerSelection = e.target.id;
         displayResultGameArea(playRound(playerSelection));
