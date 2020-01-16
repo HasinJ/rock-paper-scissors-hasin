@@ -3,19 +3,58 @@
   <head>
     <meta charset="utf-8">
     <title>Rock Paper Scissors Hasin</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
-    <button id="play">Click Here for Rock-Paper-Scissors with prompt</button>
+    <div class="center">
+      <button id="prompt">Click Here for Rock-Paper-Scissors with prompt</button>
+
+      <div class="gamearea">
+        <button id="rock" class="choice">Rock</button>
+        <button id="paper" class="choice">Paper</button>
+        <button id="scissors" class="choice">Scissors</button>
+        <h1 id="whatHappened"></h1>
+        <p id="score"></p>
+
+      </div>
+    </div>
 
     <script>
+    let roundsPlayed=0;
+    let roundsWon=0;
+    let playerSelection = "";
 
-    const play = document.getElementById('play');
-    play.addEventListener('click', promptUser);
+    const promptit = document.getElementById('prompt');
+    promptit.addEventListener('click', promptUser);
+
+    let scoreParagraph = document.getElementById('score');
+    let whatHappened = document.getElementById('whatHappened')
+    const choices = document.querySelectorAll('.choice');
+    choices.forEach( (choice) => //gives a function to each button with class 'choice' simultaneously
+      choice.addEventListener( 'click', (e) => {
+        playerSelection = e.target.id;
+        displayResultGameArea(playRound(playerSelection));
+      } ))
+
+    function displayResultGameArea(result){
+      if (result !== Number(result)) return "result isn't a number";
+      roundsPlayed++;
+      roundsWon += result;
+
+      if (result === 0) {
+        whatHappened.textContent = 'You lost this round!';
+      } else if (result === 1) {
+        whatHappened.textContent = 'You won this round!';
+      }
+
+      scoreParagraph.textContent = `'${roundsWon}/${roundsPlayed}'`;
+
+    }
 
     function promptUser(){
-      const playerSelection = prompt("Rock paper or scissors?","").toLowerCase();
-      const round = Number(prompt("Enter number of rounds in digits","5"));
+      playerSelection = prompt("Rock paper or scissors?","").toLowerCase();
+      let round = Number(prompt("Enter number of rounds in digits","5"));
 
       alert(game(round, playerSelection));
     }
@@ -42,6 +81,7 @@
 
     function playRound(pS){
       let cS = computerPlay(); //computer random selection
+      if (typeof(pS) !== "string") return "player selection isn't a string!";
 
       if ((pS == "rock" && cS == "paper") || (pS == "paper" && cS == "scissors") || (pS == "scissors" && cS == "rock")) {
         return 0;
@@ -55,7 +95,7 @@
     }
 
     function game(rounds, playerSelection){
-      let won=0;
+      let won = 0;
       for(i = 0; i < rounds; i++){
         won = won + playRound(playerSelection);
       }
