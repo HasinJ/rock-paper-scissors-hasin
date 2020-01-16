@@ -41,12 +41,12 @@
 
 
     function displayResultGameArea(result){
-      if (result !== Number(result)) return "result isn't a number";
+      if (typeof(result) !== "number") return "result isn't a number";
       roundsPlayed++;
       roundsWon += result;
 
       if (result === 0) {
-        whatHappened.textContent = 'You lost this round!';
+        whatHappened.textContent = 'You lost/tied this round!';
       } else if (result === 1) {
         whatHappened.textContent = 'You won this round!';
       }
