@@ -21,21 +21,24 @@
     </div>
 
     <script>
-    let roundsPlayed=0;
-    let roundsWon=0;
-    let playerSelection = "";
 
     const promptit = document.getElementById('prompt');
     promptit.addEventListener('click', promptUser);
 
-    let scoreParagraph = document.getElementById('score');
-    let whatHappened = document.getElementById('whatHappened')
+    let roundsPlayed=0;
+    let roundsWon=0;
+    let playerSelection = "";
+    const scoreParagraph = document.getElementById('score');
+    const whatHappened = document.getElementById('whatHappened')
     const choices = document.querySelectorAll('.choice');
+
     choices.forEach( (choice) => //gives a function to each button with class 'choice' simultaneously
       choice.addEventListener( 'click', (e) => {
         playerSelection = e.target.id;
         displayResultGameArea(playRound(playerSelection));
       } ))
+
+
 
     function displayResultGameArea(result){
       if (result !== Number(result)) return "result isn't a number";
